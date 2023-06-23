@@ -1,0 +1,364 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <!-- Background Image -->
+            <ImageView
+                android:id="@+id/backgroundImageView"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop" />
+
+            <!-- Location -->
+            <TextView
+                android:id="@+id/locationTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="30sp"
+                android:layout_marginTop="40dp"
+                android:layout_centerHorizontal="true"
+                android:textStyle="bold" />
+
+            <!-- Temperature -->
+            <TextView
+                android:id="@+id/temperatureTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="56sp"
+                android:textStyle="bold"
+                android:layout_below="@id/locationTextView"
+                android:layout_marginTop="3dp"
+                android:layout_centerHorizontal="true" />
+
+            <!-- Weather Description -->
+            <TextView
+                android:id="@+id/weatherDescriptionTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp"
+                android:layout_below="@id/temperatureTextView"
+                android:layout_marginTop="3dp"
+                android:layout_centerHorizontal="true" />
+
+            <!-- High and Low Temperature -->
+            <TextView
+                android:id="@+id/highLowTemperatureTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="22sp"
+                android:layout_below="@id/weatherDescriptionTextView"
+                android:layout_marginTop="3dp"
+                android:layout_centerHorizontal="true" />
+
+        <LinearLayout
+            android:id="@+id/weatherInfoLayout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="240dp"
+            android:layout_centerHorizontal="true"
+            android:orientation="horizontal">
+
+            <!-- Pressure -->
+            <TextView
+                android:id="@+id/pressureTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp" />
+
+            <!-- Humidity -->
+            <TextView
+                android:id="@+id/humidityTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="20sp"
+                android:layout_marginStart="16dp" />
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="280dp"
+            app:layout_constraintTop_toBottomOf="@id/humidityTextView"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:ignore="NotSibling">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+
+                <!-- New York Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/newYorkBackgroundImageView"
+                    android:layout_width="match_parent"
+                    android:layout_margin="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp"
+                    android:scaleType="centerCrop"
+                    android:layout_height="85dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/newYorkLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="New York" />
+
+                        <!-- Temperature -->
+                        <TextView
+                            android:id="@+id/newYorkTemperatureTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/newYorkLocationTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#000000"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp"/>
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Singapore Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/singaporeBackgroundImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_margin="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/singaporeLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:text="Singapore"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Temperature -->
+                        <TextView
+                            android:id="@+id/singaporeTemperatureTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/singaporeLocationTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:layout_marginBottom="4dp"
+                            android:textColor="#000000"
+                            android:textSize="36sp"
+                            android:textStyle="bold" />
+
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Mumbai Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/mumbaiBackgroundImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_margin="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/mumbaiLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="Mumbai" />
+
+                        <!-- Temperature -->
+                        <TextView
+                            android:id="@+id/mumbaiTemperatureTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/mumbaiLocationTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#000000"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Delhi Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/delhiBackgroundImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_margin="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/delhiLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="Delhi" />
+
+                        <!-- Temperature -->
+                        <TextView
+                            android:id="@+id/delhiTemperatureTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/delhiLocationTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#000000"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Sydney Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/sydneyBackgroundImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_margin="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/sydneyLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="Sydney" />
+
+                        <!-- Temperature -->
+                        <TextView
+                            android:id="@+id/sydneyTemperatureTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/sydneyLocationTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#000000"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Melbourne Card -->
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/melbourneBackgroundImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="85dp"
+                    android:layout_margin="16dp"
+                    android:background="@color/white"
+                    app:cardCornerRadius="8dp">
+
+                    <RelativeLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <!-- Location -->
+                        <TextView
+                            android:id="@+id/melbourneLocationTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="8dp"
+                            android:textColor="#000000"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:text="Melbourne" />
+
+                        <!-- Temperature -->
+                        <TextView
+                            android:id="@+id/melbourneTemperatureTextView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@id/melbourneLocationTextView"
+                            android:layout_centerHorizontal="true"
+                            android:layout_marginTop="3dp"
+                            android:textColor="#000000"
+                            android:textSize="36sp"
+                            android:textStyle="bold"
+                            android:layout_marginBottom="4dp" />
+
+                    </RelativeLayout>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
+        </ScrollView>
+        </RelativeLayout>
+    </LinearLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

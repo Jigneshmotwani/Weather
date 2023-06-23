@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">WeatherApp</string>
+    <string name="pressure_title">Pressure</string>
+    <string name="humidity_title">Humidity</string>
+    <string name="background_image"></string>
+    <string name="last_updated">Last updated: %s</string>
+    <string name="temperature">Temperature: %s°C</string>
+    <string name="high_low_temperature">H: %s°C  L: %s°C</string>
+    <string name="pressure">Pressure: %s hPa</string>
+    <string name="humidity">Humidity: %s%%</string>
+    <string name="temperature_format">%s °C</string>
+    <string name="high_low_temperature_format">High: %s °C\nLow: %s °C</string>
+    <string name="humidity_format">Humidity: %s %%</string>
+    <string name="pressure_format">Pressure: %s hPa</string>
+
+
+
+
+</resources>
