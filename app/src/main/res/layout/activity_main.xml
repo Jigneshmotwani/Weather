@@ -28,7 +28,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:layout_marginTop="40dp"
                 android:layout_centerHorizontal="true"
                 android:textStyle="bold" />
@@ -42,7 +42,7 @@
                 android:textSize="56sp"
                 android:textStyle="bold"
                 android:layout_below="@id/locationTextView"
-                android:layout_marginTop="3dp"
+
                 android:layout_centerHorizontal="true" />
 
             <!-- Weather Description -->
@@ -51,9 +51,9 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:textSize="24sp"
+                android:textSize="16sp"
                 android:layout_below="@id/temperatureTextView"
-                android:layout_marginTop="3dp"
+
                 android:layout_centerHorizontal="true" />
 
             <!-- High and Low Temperature -->
@@ -62,16 +62,16 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:textSize="22sp"
+                android:textSize="12sp"
                 android:layout_below="@id/weatherDescriptionTextView"
-                android:layout_marginTop="3dp"
+
                 android:layout_centerHorizontal="true" />
 
         <LinearLayout
             android:id="@+id/weatherInfoLayout"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="260dp"
             android:layout_centerHorizontal="true"
             android:orientation="horizontal">
 
@@ -81,7 +81,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp" />
+                android:textSize="12sp" />
 
             <!-- Humidity -->
             <TextView
@@ -89,7 +89,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textColor="#FFFFFF"
-                android:textSize="20sp"
+
+                android:textSize="12sp"
                 android:layout_marginStart="16dp" />
         </LinearLayout>
 
@@ -127,9 +128,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="5dp"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             android:text="New York" />
 
@@ -140,9 +141,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/newYorkLocationTextView"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="3dp"
+
                             android:textColor="#000000"
-                            android:textSize="36sp"
+                            android:textSize="30sp"
                             android:textStyle="bold"
                             android:layout_marginBottom="4dp"/>
 
@@ -168,10 +169,10 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="5dp"
                             android:text="Singapore"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="12sp"
                             android:textStyle="bold" />
 
                         <!-- Temperature -->
@@ -181,10 +182,10 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/singaporeLocationTextView"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="3dp"
+
                             android:layout_marginBottom="4dp"
                             android:textColor="#000000"
-                            android:textSize="36sp"
+                            android:textSize="30sp"
                             android:textStyle="bold" />
 
 
@@ -210,9 +211,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="5dp"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             android:text="Mumbai" />
 
@@ -223,9 +224,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/mumbaiLocationTextView"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="3dp"
+
                             android:textColor="#000000"
-                            android:textSize="36sp"
+                            android:textSize="30sp"
                             android:textStyle="bold"
                             android:layout_marginBottom="4dp" />
 
@@ -251,9 +252,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="5dp"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             android:text="Delhi" />
 
@@ -264,9 +265,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/delhiLocationTextView"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="3dp"
+
                             android:textColor="#000000"
-                            android:textSize="36sp"
+                            android:textSize="30sp"
                             android:textStyle="bold"
                             android:layout_marginBottom="4dp" />
 
@@ -292,9 +293,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="5dp"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             android:text="Sydney" />
 
@@ -305,9 +306,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/sydneyLocationTextView"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="3dp"
+
                             android:textColor="#000000"
-                            android:textSize="36sp"
+                            android:textSize="30sp"
                             android:textStyle="bold"
                             android:layout_marginBottom="4dp" />
 
@@ -333,9 +334,9 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="8dp"
+                            android:layout_marginTop="5dp"
                             android:textColor="#000000"
-                            android:textSize="18sp"
+                            android:textSize="12sp"
                             android:textStyle="bold"
                             android:text="Melbourne" />
 
@@ -346,9 +347,9 @@
                             android:layout_height="wrap_content"
                             android:layout_below="@id/melbourneLocationTextView"
                             android:layout_centerHorizontal="true"
-                            android:layout_marginTop="3dp"
+
                             android:textColor="#000000"
-                            android:textSize="36sp"
+                            android:textSize="30sp"
                             android:textStyle="bold"
                             android:layout_marginBottom="4dp" />
 

@@ -48,16 +48,8 @@ public class MainActivity extends AppCompatActivity {
 
     private RecyclerView cityWeatherRecyclerView;
 
-    private static final String PREFS_KEY_PREFIX = "";
-    private static final String SHARED_PREFS_NAME = "WeatherAppPrefs";
-    private static final String KEY_WEATHER_RESPONSE = "weatherResponse";
-    private static final String KEY_LAST_UPDATED_TIME = "lastUpdatedTime";
-    private static final String PREFS_KEY_NEW_YORK = "prefs_key_new_york";
-    private static final String PREFS_KEY_SINGAPORE = "prefs_key_singapore";
-    private static final String PREFS_KEY_MUMBAI = "prefs_key_mumbai";
-    private static final String PREFS_KEY_DELHI = "prefs_key_delhi";
-    private static final String PREFS_KEY_SYDNEY = "prefs_key_sydney";
-    private static final String PREFS_KEY_MELBOURNE = "prefs_key_melbourne";
+    private WeatherApi weatherApi;
+
 
 
 
@@ -84,7 +76,7 @@ public class MainActivity extends AppCompatActivity {
     private CardView sydneyBackgroundImageView;
     private TextView melbourneTemperatureTextView;;
     private CardView melbourneBackgroundImageView;
-    private WeatherApi weatherApi;
+
     private FusedLocationProviderClient fusedLocationClient;
     private LocationCallback locationCallback;
 
@@ -94,7 +86,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        requestWindowFeature(Window.FEATURE_NO_TITLE);
+
         setContentView(R.layout.activity_main);
 
         backgroundImageView = findViewById(R.id.backgroundImageView);
@@ -120,34 +112,7 @@ public class MainActivity extends AppCompatActivity {
         melbourneBackgroundImageView = findViewById(R.id.melbourneBackgroundImageView);
 
         // Update the UI with the saved weather data
-        WeatherResponse savedWeatherResponse = loadWeatherResponse();
-        if (savedWeatherResponse != null) {
-            updateUI(savedWeatherResponse);
-        }
-        WeatherResponse newYorkWeatherData = getSavedWeatherData(PREFS_KEY_NEW_YORK);
-        if (newYorkWeatherData != null) {
-            updateUI(newYorkWeatherData);
-        }
-        WeatherResponse singaporeWeatherData = getSavedWeatherData(PREFS_KEY_SINGAPORE);
-        if (singaporeWeatherData != null) {
-            updateUI(singaporeWeatherData);
-        }
-        WeatherResponse mumbaiWeatherData = getSavedWeatherData(PREFS_KEY_MUMBAI);
-        if (mumbaiWeatherData != null) {
-            updateUI(mumbaiWeatherData);
-        }
-        WeatherResponse delhiWeatherData = getSavedWeatherData(PREFS_KEY_DELHI);
-        if (delhiWeatherData != null) {
-            updateUI(delhiWeatherData);
-        }
-        WeatherResponse sydneyWeatherData = getSavedWeatherData(PREFS_KEY_SYDNEY);
-        if (sydneyWeatherData != null) {
-            updateUI(sydneyWeatherData);
-        }
-        WeatherResponse melbourneWeatherData = getSavedWeatherData(PREFS_KEY_MELBOURNE);
-        if (melbourneWeatherData != null) {
-            updateUI(melbourneWeatherData);
-        }
+
 
         // Retrofit initialization with Gson converter
         Gson gson = new GsonBuilder().create();
@@ -199,10 +164,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onResponse(Call<WeatherResponse> call, Response<WeatherResponse> response) {
                     if (response.isSuccessful()) {
                         WeatherResponse weatherResponse = response.body();
-                        if (weatherResponse != null) {
-                            saveWeatherResponse(SHARED_PREFS_NAME, weatherResponse);
-                            updateUI(weatherResponse);
-                        }
+
                         PeriodicWorkRequest periodicWorkRequest = new PeriodicWorkRequest.Builder(
                                 WeatherDataWorker.class,
                                 1, TimeUnit.HOURS)
@@ -236,34 +198,11 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-    private WeatherResponse loadWeatherResponse() {
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
-        String weatherResponseJson = sharedPreferences.getString(KEY_WEATHER_RESPONSE, null);
-        if (weatherResponseJson != null) {
-            Gson gson = new Gson();
-            return gson.fromJson(weatherResponseJson, WeatherResponse.class);
-        }
-        return null;
-    }
 
-    private void saveWeatherResponse(String prefsKey, WeatherResponse weatherResponse) {
-        Gson gson = new Gson();
-        String weatherResponseJson = gson.toJson(weatherResponse);
 
-        SharedPreferences sharedPreferences = getSharedPreferences(SHARED_PREFS_NAME, MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        editor.putString(KEY_WEATHER_RESPONSE, weatherResponseJson);
 
-        // Save the current timestamp as the last updated time
-        long currentTimeMillis = System.currentTimeMillis();
-        editor.putLong(KEY_LAST_UPDATED_TIME, currentTimeMillis);
 
-        editor.apply();
-    }
 
-    private String getPrefsKey(String location) {
-        return PREFS_KEY_PREFIX + location.replace(" ", "_");
-    }
 
     private void updateTemperatureTextView(String location, double temperature) {
         TextView temperatureTextView;
@@ -353,17 +292,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void handleNoLocationAvailable() {
-        // Load the saved weather response from SharedPreferences
-        WeatherResponse savedWeatherResponse = loadWeatherResponse();
-        if (savedWeatherResponse != null) {
-            updateUI(savedWeatherResponse);
-        } else {
-            // Handle case of no internet and no saved weather response
-            // Display an appropriate message to the user
-            Toast.makeText(this, "No weather data available.", Toast.LENGTH_SHORT).show();
-        }
-    }
+
 
     private String getCityName(double latitude, double longitude) {
         Geocoder geocoder = new Geocoder(this);
@@ -391,7 +320,7 @@ public class MainActivity extends AppCompatActivity {
                 fetchWeatherData(latitude, longitude);
             } else {
                 // Handle case of no last known location
-                handleNoLocationAvailable();
+
             }
         });
 
@@ -439,8 +368,12 @@ public class MainActivity extends AppCompatActivity {
         int temperature = (int) Math.round(weatherMain.getTemperature() - 273.15);
         String temperatureText = temperature + "°C";
         temperatureTextView.setText(temperatureText);
-        String capitalizedDescription = capitalizeWords(weatherConditions[0].getDescription());
-        weatherDescriptionTextView.setText(capitalizedDescription);
+        if (weatherConditions != null && weatherConditions.length > 0) {
+            String capitalizedDescription = capitalizeWords(weatherConditions[0].getDescription());
+            weatherDescriptionTextView.setText(capitalizedDescription);
+        } else {
+            weatherDescriptionTextView.setText("N/A");
+        }
         String highLowTemperature = "H: " + Math.round(weatherMain.getTempMax() - 273.15) + "°C  L: " + Math.round(weatherMain.getTempMin() - 273.15) + "°C";
         highLowTemperatureTextView.setText(highLowTemperature);
         String pressure = "Pressure: " + weatherMain.getPressure() + " hPa";
@@ -448,12 +381,7 @@ public class MainActivity extends AppCompatActivity {
         String humidity = "Humidity: " + weatherMain.getHumidity() + "%";
         humidityTextView.setText(humidity);
 
-        saveWeatherData(PREFS_KEY_NEW_YORK, weatherResponse);
-        saveWeatherData(PREFS_KEY_SINGAPORE, weatherResponse);
-        saveWeatherData(PREFS_KEY_MUMBAI, weatherResponse);
-        saveWeatherData(PREFS_KEY_DELHI, weatherResponse);
-        saveWeatherData(PREFS_KEY_SYDNEY, weatherResponse);
-        saveWeatherData(PREFS_KEY_MELBOURNE, weatherResponse);
+       ;
 
         int backgroundResId;
         switch (weatherConditions[0].getMain()) {
