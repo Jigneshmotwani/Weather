@@ -136,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         fetchWeatherData();
+        fetchCurrentLocationAndWeatherData();
 
     } // end of OnCreate
 
@@ -309,9 +310,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void fetchCurrentLocationAndWeatherData() {
-        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
+
+        WeatherResponse savedWeatherData = getSavedWeatherData(cityName);
+        if (savedWeatherData != null) {
+            // Display saved weather data
+            updateUI(savedWeatherData);
+        }
+        if (ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED
+                && ActivityCompat.checkSelfPermission(this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
+
         fusedLocationClient.getLastLocation().addOnSuccessListener(location -> {
             if (location != null) {
                 double latitude = location.getLatitude();
@@ -320,9 +329,11 @@ public class MainActivity extends AppCompatActivity {
                 fetchWeatherData(latitude, longitude);
             } else {
                 // Handle case of no last known location
-
             }
         });
+
+
+
 
         LocationRequest locationRequest = LocationRequest.create();
         locationRequest.setPriority(LocationRequest.PRIORITY_HIGH_ACCURACY);
@@ -351,6 +362,9 @@ public class MainActivity extends AppCompatActivity {
                 if (response.isSuccessful()) {
                     WeatherResponse weatherResponse = response.body();
                     if (weatherResponse != null) {
+                        // Save the weather data
+                        saveWeatherData(cityName, weatherResponse);
+                        // Update the UI
                         updateUI(weatherResponse);
                     }
                 }
